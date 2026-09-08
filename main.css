@@ -1,0 +1,1172 @@
+:root {
+  --bg: #0b0d10;
+  --panel: #11151b;
+  --text: #e8edf3;
+  --muted: #a9b4c2;
+  --line: rgba(255,255,255,.10);
+  --brand: #7aa2f7;
+  --brand2: #34d399;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+
+  /* Tăng bề ngang web */
+  --max: 1380px;
+
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+[data-theme="light"] {
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: rgba(15,23,42,.12);
+  --brand: #2563eb;
+  --brand2: #16a34a;
+  --shadow: 0 12px 28px rgba(2,6,23,.10);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif !important; 
+
+}
+
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--text);
+  line-height: 1.55;
+
+  background:
+    radial-gradient(
+      900px 420px at 15% -10%,
+      rgba(122, 162, 247, 0.10),
+      transparent 60%
+    ),
+
+    radial-gradient(
+      900px 420px at 85% 0%,
+      rgba(255, 255, 255, 0.04),
+      transparent 60%
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03),
+      transparent 35%
+    ),
+
+    url("./bg.png")
+      center / cover no-repeat fixed,
+
+    var(--bg);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 18px 64px;
+}
+
+section {
+  scroll-margin-top: 92px;
+}
+
+/* =========================
+   Topbar
+   ========================= */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  overflow: visible;
+  backdrop-filter: blur(10px);
+  background: rgba(10,12,16,.62);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Lồng đèn treo ở hai đầu topbar */
+.topbar-lantern {
+  position: absolute;
+  top:63px;
+  z-index: 51;
+    width: clamp(90px, 8vw, 155px);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 8px 10px rgba(191, 25, 25, .28));
+  animation: lantern-sway 1.5s ease-in-out infinite alternate;
+}
+
+.topbar-lantern-left {
+  left: max(8px, calc((100vw - var(--max)) / 2 - 123px));
+}
+
+.topbar-lantern-right {
+  right: max(8px, calc((100vw - var(--max)) / 2 - 123px));
+  animation-delay: -1.75s;
+}
+
+@keyframes lantern-sway {
+  from { transform: rotate(-2deg); }
+  to { transform: rotate(2deg); }
+}
+
+/* Hai con lân cố định ở hai góc dưới màn hình */
+.corner-lion {
+  position: fixed;
+  bottom: 0;
+  z-index: 40;
+  width: clamp(145px, 16vw, 270px);
+  max-height: 43vh;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .18));
+}
+
+.corner-lion-left {
+  left: 0;
+  object-position: left bottom;
+}
+
+.corner-lion-right {
+  right: 0;
+  object-position: right bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar-lantern {
+    animation: none;
+  }
+}
+
+[data-theme="light"] .topbar {
+  background: rgba(246,247,251,.72);
+}
+
+.topbar-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 10px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+}
+
+.brand-text .name {
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.brand-text .sub {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: -2px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.nav a.active {
+  color: var(--text);
+  border-color: var(--line);
+  background: color-mix(in oklab, var(--panel) 85%, transparent);
+}
+
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* =========================
+   Avatar
+   ========================= */
+
+.avatar,
+.hero-avatar {
+  position: relative;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+}
+
+.hero-avatar {
+  width: 170px;
+  height: 170px;
+}
+
+.avatar-ring,
+.hero-avatar-ring {
+  position: absolute;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  opacity: .95;
+}
+
+.avatar-ring {
+  inset: -2px;
+  z-index: 0;
+}
+
+.hero-avatar-ring {
+  inset: -3px;
+}
+
+.avatar img,
+.avatar .avatar-fallback,
+.hero-avatar img,
+.hero-avatar-fallback {
+  position: absolute;
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.avatar img,
+.avatar .avatar-fallback {
+  inset: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+}
+
+.hero-avatar img,
+.hero-avatar-fallback {
+  inset: 3px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+}
+
+.avatar img,
+.hero-avatar img {
+  display: block;
+  object-fit: cover;
+  background: color-mix(in oklab, var(--panel) 90%, transparent);
+}
+
+.hero-avatar img {
+  border: 1px solid var(--line);
+}
+
+.avatar .avatar-fallback,
+.hero-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+}
+
+.hero-avatar-fallback {
+  font-weight: 900;
+  letter-spacing: .4px;
+  border: 1px solid var(--line);
+}
+
+.avatar.has-img .avatar-fallback,
+.hero-avatar.has-img .hero-avatar-fallback {
+  display: none;
+}
+
+.hero-avatar-hint {
+  text-align: center;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 90%, transparent);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .12s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  border-color: color-mix(in oklab, var(--brand) 55%, var(--line));
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand) 25%, var(--panel)),
+    color-mix(in oklab, var(--brand2) 18%, var(--panel))
+  );
+}
+
+.kbd {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+/* =========================
+   Hero
+   ========================= */
+
+.hero {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background:
+    radial-gradient(700px 160px at 25% 10%, rgba(122,162,247,.12), transparent 60%),
+    radial-gradient(700px 160px at 75% 0%, rgba(52,211,153,.07), transparent 60%);
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 16px;
+  padding: 22px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: .2px;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.hero-badges,
+.contact-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.contact-row {
+  margin-top: 12px;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pill {
+  font-size: 12px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  color: var(--muted);
+}
+
+.pill strong {
+  color: var(--text);
+}
+
+/* =========================
+   Cards and layout
+   ========================= */
+
+section.card {
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+section.card h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 12px;
+  font-size: 20px;
+  letter-spacing: .2px;
+  border-bottom: 3px solid color-mix(in oklab, var(--brand2) 35%, var(--line));
+}
+
+/* Mở rộng layout: main rộng hơn, sidebar vừa phải */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(760px, 1fr) 380px;
+  gap: 22px;
+  margin-top: 18px;
+  align-items: stretch;
+}
+
+.main,
+.sidebar,
+.timeline,
+.skill-group {
+  display: grid;
+}
+
+.main {
+  gap: 18px;
+  grid-template-rows: auto 1fr;
+  min-height: calc(100vh - 110px);
+  align-self: stretch;
+}
+
+.sidebar {
+  gap: 18px;
+  position: sticky;
+  top: 92px;
+  align-self: start;
+  max-height: calc(100vh - 110px);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
+}
+
+/* =========================
+   Timeline
+   ========================= */
+
+.timeline {
+  gap: 14px;
+}
+
+.titem {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 96%, transparent);
+}
+
+.titem .when {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.titem h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.titem .meta {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14px !important;
+}
+
+.titem ul {
+  margin: 8px 0 0 18px;
+  padding: 0;
+}
+
+.titem li {
+  margin: 4px 0;
+  color: var(--muted);
+}
+
+.titem li strong {
+  color: var(--text);
+}
+
+/* =========================
+   Skills
+   ========================= */
+
+.skill-group {
+  gap: 10px;
+}
+
+.skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 94%, transparent);
+  color: var(--text);
+}
+
+.tag.muted {
+  color: var(--muted);
+}
+
+/* =========================
+   Search
+   ========================= */
+
+.pub-top {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.search {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 96%, transparent);
+}
+
+.search-icon {
+  font-family: var(--mono);
+  color: var(--muted);
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+}
+
+/* =========================
+   Publications — paper format
+   ========================= */
+
+#publications {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 580px;
+}
+
+.publist.paper-format {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  flex: 1;
+}
+
+.publist.paper-format .pub-paper {
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.publist.paper-format .pub-paper:last-child {
+  margin-bottom: 0;
+}
+
+.publist.paper-format .pub-paper::before {
+  display: none;
+  content: none;
+}
+
+.publist.paper-format .pub-paper p {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.42;
+  color: var(--text);
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+.publist.paper-format .pub-authors,
+.publist.paper-format .pub-year,
+.publist.paper-format .pub-title,
+.publist.paper-format .pub-location,
+.publist.paper-format .pub-note {
+  font-weight: 400;
+}
+
+.publist.paper-format .pub-authors strong {
+  font-weight: 700;
+}
+
+.publist.paper-format .pub-year,
+.publist.paper-format .pub-title,
+.publist.paper-format .pub-venue,
+.publist.paper-format .pub-location,
+.publist.paper-format .pub-note {
+  margin-left: 4px;
+}
+
+.publist.paper-format .pub-venue {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* =========================
+   References — simple academic format
+   ========================= */
+
+#references,
+#references h2 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+#references h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid color-mix(in oklab, var(--brand2) 35%, var(--line));
+}
+
+.ref-list.simple-ref {
+  display: grid;
+  gap: 20px;
+}
+
+.ref-person {
+  margin: 0;
+  padding: 0;
+}
+
+.ref-person h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ref-person p {
+  margin: 0 0 5px;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.ref-person p:last-child {
+  margin-bottom: 0;
+}
+
+.ref-person a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.ref-person a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+/* Sidebar version */
+.sidebar #references h2 {
+  font-size: 20px;
+}
+
+.sidebar .ref-list.simple-ref {
+  gap: 18px;
+}
+
+.sidebar .ref-person h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.sidebar .ref-person p {
+  font-size: 15px;
+  line-height: 1.32;
+  margin-bottom: 4px;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  #references h2 {
+    font-size: 18px;
+  }
+
+  .ref-person h3 {
+    font-size: 18px;
+  }
+
+  .ref-person p {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 12.5px;
+  text-align: center;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+/* iPad và màn hình nhỏ hơn 1080px */
+@media (max-width: 1080px) {
+  .topbar-lantern {
+    width: 95px;
+    opacity: 1;
+  }
+
+  .topbar-lantern-left {
+    left: 4px;
+  }
+
+  .topbar-lantern-right {
+    right: 4px;
+  }
+
+  .corner-lion {
+    width: clamp(120px, 17vw, 180px);
+    opacity: .94;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    min-height: auto;
+    grid-template-rows: auto;
+  }
+
+  #publications {
+    height: auto;
+    min-height: auto;
+  }
+
+  .sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+}
+
+/* Điện thoại */
+@media (max-width: 720px) {
+  .topbar-lantern {
+    width: 75px;
+    opacity: 1;
+  }
+
+  .corner-lion {
+    width: 105px;
+    max-height: 28vh;
+    opacity: .78;
+  }
+
+  .publist.paper-format .pub-paper {
+    margin-bottom: 18px;
+  }
+
+  .publist.paper-format .pub-paper p {
+    font-size: 16px;
+    line-height: 1.45;
+    text-align: left;
+    text-align-last: left;
+  }
+
+  #references h2 {
+    font-size: 18px;
+  }
+
+  .ref-person h3 {
+    font-size: 17px;
+  }
+
+  .ref-info,
+  .ref-line {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   Print
+   ========================= */
+
+@media print {
+  .topbar,
+  .topbar-lantern,
+  .corner-lion,
+  .contact-row,
+  .actions,
+  .pill,
+  .pub-top {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  section.card,
+  .hero {
+    box-shadow: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+/* =========================
+   Certifications — academic ribbon format
+   ========================= */
+
+#certifications {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.cert-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.cert-item {
+  display: grid;
+  grid-template-columns: 58px 20px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.cert-year {
+  font-size: 17px;
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.cert-icon {
+  position: relative;
+  width: 14px;
+  height: 22px;
+  margin-top: 2px;
+  background: #c0392b;
+  border-radius: 2px 2px 0 0;
+}
+
+.cert-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid #c0392b;
+  border-right: 7px solid #c0392b;
+  border-bottom: 7px solid transparent;
+}
+
+.cert-content h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.cert-content h3 span {
+  font-weight: 500;
+}
+
+.cert-meta {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+/* Sidebar version */
+.sidebar #certifications .cert-list {
+  gap: 16px;
+}
+
+.sidebar #certifications .cert-item {
+  grid-template-columns: 48px 18px 1fr;
+  gap: 10px;
+}
+
+.sidebar #certifications .cert-year {
+  font-size: 15px;
+}
+
+.sidebar #certifications .cert-content h3 {
+  font-size: 14px;
+  line-height: 1.28;
+  text-align: justify;
+}
+
+.sidebar #certifications .cert-meta {
+  font-size: 13.5px;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .cert-item {
+    grid-template-columns: 48px 18px 1fr;
+    gap: 10px;
+  }
+
+  .cert-year {
+    font-size: 15px;
+  }
+
+  .cert-content h3 {
+    font-size: 15px;
+  }
+
+  .cert-meta {
+    font-size: 13.5px;
+  }
+}
+
+
+/* =========================
+   Sakura falling effect
+   ========================= */
+
+#sakura-container {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Khung chuyển động của từng cánh hoa */
+.sakura-petal {
+  position: absolute;
+  top: -12vh;
+  left: var(--left);
+
+  width: var(--size);
+  height: var(--size);
+
+  opacity: var(--opacity);
+
+  animation:
+    sakura-fall var(--fall-duration) linear infinite;
+
+  animation-delay: var(--delay);
+  will-change: transform;
+}
+
+/* Hình dạng cánh hoa */
+.sakura-petal::before {
+  content: "";
+  display: block;
+
+  width: 100%;
+  height: 72%;
+
+  border-radius:
+    90% 15% 90% 15%;
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.95),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--petal-light),
+      var(--petal-dark)
+    );
+
+  box-shadow:
+    0 2px 5px rgba(190, 60, 100, 0.18);
+
+  transform-origin: center;
+
+  animation:
+    sakura-spin var(--spin-duration) ease-in-out infinite alternate;
+}
+
+/* Cánh hoa rơi từ trên xuống dưới */
+@keyframes sakura-fall {
+  0% {
+    transform:
+      translate3d(0, -12vh, 0)
+      rotate(0deg);
+  }
+
+  20% {
+    transform:
+      translate3d(var(--drift-one), 20vh, 0)
+      rotate(75deg);
+  }
+
+  40% {
+    transform:
+      translate3d(var(--drift-two), 45vh, 0)
+      rotate(150deg);
+  }
+
+  60% {
+    transform:
+      translate3d(var(--drift-three), 70vh, 0)
+      rotate(230deg);
+  }
+
+  80% {
+    transform:
+      translate3d(var(--drift-four), 95vh, 0)
+      rotate(310deg);
+  }
+
+  100% {
+    transform:
+      translate3d(var(--drift-five), 115vh, 0)
+      rotate(390deg);
+  }
+}
+
+/* Cánh hoa lắc và xoay nhẹ */
+@keyframes sakura-spin {
+  0% {
+    transform:
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(0.85);
+  }
+
+  50% {
+    transform:
+      rotateX(65deg)
+      rotateY(120deg)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      rotateX(140deg)
+      rotateY(240deg)
+      scale(0.8);
+  }
+}
+
+/* Đặt hoa phía sau topbar */
+.topbar {
+  z-index: 50;
+}
+
+/* Giảm hiệu ứng trên điện thoại */
+@media (max-width: 720px) {
+  .sakura-petal:nth-child(2n) {
+    display: none;
+  }
+}
+
+/* Tắt chuyển động nếu người dùng chọn giảm hiệu ứng */
+@media (prefers-reduced-motion: reduce) {
+  #sakura-container {
+    display: none;
+  }
+}

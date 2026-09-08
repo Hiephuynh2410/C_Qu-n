@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Quan-Minh Le — Resume Website" />
+  <title>Quan-Minh Le | Resume</title>
+
+  <script>
+    (function () {
+      const t = localStorage.getItem("theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+   <div id="sakura-container" aria-hidden="true"></div>
+  <header class="topbar">
+    <!-- Decorative lanterns attached to the topbar -->
+    <!-- <img class="topbar-lantern topbar-lantern-left"
+         src="./LongDentruingthu.png" alt="" aria-hidden="true" />
+    <img class="topbar-lantern topbar-lantern-right"
+         src="./LongDentruingthu.png" alt="" aria-hidden="true" /> -->
+
+    <div class="topbar-inner">
+      <!-- Brand + Avatar -->
+      <div class="brand">
+        <button class="avatar" id="avatarBtn" type="button" aria-label="Change avatar">
+          <img id="avatarImg" src="./LeMinhQuan@4x.png" alt="Quan-Minh Le" />
+          <span class="avatar-ring" aria-hidden="true"></span>
+        </button>
+        <input id="avatarInput" type="file" accept="image/*" hidden />
+
+        <div class="brand-text">
+          <div class="name">Quan-Minh Le</div>
+          <span class="sub">Lê Minh Quân • Resume Website</span>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav aria-label="Primary navigation" class="nav">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Qualifications</a>
+        <a href="#skills">Skills</a>
+        <a href="#publications">Publications &amp; Experience</a>
+        <a href="#references">Reference</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn" id="themeBtn" type="button" title="Toggle theme (T)">
+          Theme <span class="kbd">T</span>
+        </button>
+
+        <button class="btn" id="printBtn" type="button" title="Print / Save as PDF (P)">
+          Print <span class="kbd">P</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Animated lion-dance decorations -->
+  <img class="corner-lion corner-lion-left"
+       src="./cay_anh_dao_lac_lu.gif" alt="" aria-hidden="true" />
+
+  <img class="corner-lion corner-lion-right"
+       src="./cay_anh_dao_lac_lu.gif" alt="" aria-hidden="true" />
+
+  <main class="wrap">
+    <!-- HERO / ABOUT -->
+    <section class="hero" id="about">
+      <div class="hero-inner">
+        <div>
+          <h1>Quan-Minh Le</h1>
+
+          <p>
+            M.Sc. student in Information Technology at the Faculty of Information
+            Technology, Ho Chi Minh City University of Technology (HUTECH), Vietnam.
+            Currently working as a Manual-Automation Tester at Teqnological Asia Co., Ltd.
+          </p>
+
+          <div class="hero-badges" aria-label="Highlights">
+            <span class="pill">
+              Email:
+              <a id="emailLink" href="mailto:quanle.dt@gmail.com">
+                <strong id="emailText">quanle.dt@gmail.com</strong>
+              </a>
+            </span>
+
+            <span class="pill">
+              English: intermediate reading, writing, and speaking
+            </span>
+          </div>
+
+          <div class="contact-row">
+            <a class="btn primary" href="mailto:quanle.dt@gmail.com">
+              Email me
+            </a>
+
+            <a class="btn"
+               href="https://drive.google.com/file/d/1zhZrEgo17ajCae7DOH2sjOqNZavHcTFz/view"
+               target="_blank"
+               rel="noopener">
+              Here's my CV
+            </a>
+          </div>
+
+          <div class="small muted"
+               id="toast"
+               style="display:none;margin-top:8px"></div>
+        </div>
+
+        <div class="hero-right">
+          <button class="hero-avatar"
+                  id="heroAvatarBtn"
+                  type="button"
+                  aria-label="Change avatar">
+            <span class="hero-avatar-ring" aria-hidden="true"></span>
+            <img id="heroAvatarImg"
+                 src="./LeMinhQuan@4x.png"
+                 alt="Quan-Minh Le" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content and sidebar -->
+    <div class="layout">
+      <!-- MAIN -->
+      <div class="main">
+        <section class="card" id="education">
+            <h2>Education</h2>
+
+            <div class="timeline">
+              <!-- Master's degree -->
+              <div class="titem">
+                <div class="when">
+                  2024–Present
+                </div>
+
+                <div>
+                  <h3>M.Sc. in Information Technology</h3>
+
+                  <div class="meta">
+                    Faculty of Information Technology
+                  </div>
+
+                  <div class="meta">
+                    Ho Chi Minh City University of Technology (HUTECH), Vietnam
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bachelor's degree -->
+              <div class="titem">
+                <div class="when">
+                  2019–2023
+                </div>
+
+                <div>
+                  <h3>B.Eng. in Information Technology</h3>
+
+                  <div class="meta">
+                    Faculty of Information Technology
+                  </div>
+
+                  <div class="meta">
+                    Ho Chi Minh City University of Technology (HUTECH), Vietnam
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section class="card" id="education">
+          <h2>Work Experience</h2>
+
+          <div class="timeline">
+            <!-- Work Experience 1 -->
+            <div class="titem">
+              <div class="when">
+                Nov. 2023–Present
+              </div>
+
+              <div>
+                <h3>
+                  Manual-Automation Tester
+                </h3>
+
+                <div class="meta">
+                  Teqnological Asia Co., Ltd. — Ho Chi Minh City, Vietnam
+                </div>
+
+                <div class="meta">
+                  Responsible for analyzing requirements, preparing test plans and
+                  test cases, executing functional and regression testing, and tracking
+                  defects during the software development process.
+                </div>
+
+                <div class="meta">
+                  Supported automation testing activities using Python and Robot
+                  Framework, participated in Agile meetings, reported testing progress,
+                  and collaborated with development teams to improve product quality.
+                </div>
+              </div>
+            </div>
+
+            <!-- Work Experience 2 -->
+            <div class="titem">
+              <div class="when">
+                Apr.–Aug. 2023
+              </div>
+
+              <div>
+                <h3>
+                  Software Testing
+                </h3>
+
+                <div class="meta">
+                  Hitachi Digital Services — Ho Chi Minh City, Vietnam
+                </div>
+
+                <div class="meta">
+                  Participated in software testing training and practical testing
+                  activities for web and mobile applications.
+                </div>
+
+                <div class="meta">
+                  Gained experience in test case design, bug reporting, UI verification,
+                  smoke testing, sanity testing, and collaboration with team members
+                  during the testing process.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="publications">
+          <h2>Publications &amp; Work Experience</h2>
+
+          <ol class="publist paper-format" id="pubList">
+            <!-- Publication -->
+            <li class="pub-paper"
+                data-text="2026 adaptive quality-gated granular-ellipsoid density peak clustering anisotropic data kse le nguyen vo bui">
+              <p>
+                <span class="pub-authors">
+                  <strong>Le, M.-Q.</strong>, Nguyen, T. T. D., Vo, B., and Bui, Q.-T.
+                </span>
+
+                <span class="pub-year">(2026).</span>
+
+                <span class="pub-title">
+                  Adaptive Quality-Gated Granular-Ellipsoid Density Peak
+                  Clustering for Anisotropic Data.
+                </span>
+
+                <span class="pub-venue">
+                  International Conference on Knowledge and Systems Engineering
+                  (KSE 2026).
+                </span>
+
+                <span class="pub-location"></span>
+              </p>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <section class="card" id="skills">
+          <h2>Skills</h2>
+
+          <div class="skill-group">
+            <div>
+              <div class="muted small" style="margin-bottom:6px">
+                Languages
+              </div>
+
+              <div class="skill-row">
+                <span class="tag">English</span>
+                <span class="tag muted">
+                  Intermediate reading, writing, and speaking
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <div class="muted small" style="margin-bottom:6px">
+                Coding
+              </div>
+
+              <div class="skill-row">
+                <span class="tag">Python, C#, HTML &amp; CSS</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="muted small" style="margin-bottom:6px">
+                Databases
+              </div>
+
+              <div class="skill-row">
+                <span class="tag">SQL Server, MySQL</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="muted small" style="margin-bottom:6px">
+                Productivity
+              </div>
+
+              <div class="skill-row">
+                <span class="tag">Microsoft Excel</span>
+                <span class="tag">Word</span>
+                <span class="tag">PowerPoint</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="muted small" style="margin-bottom:6px">
+                Miscellaneous
+              </div>
+
+              <div class="skill-row">
+                <span class="tag">Academic research</span>
+                <span class="tag">LaTeX typesetting</span>
+                <span class="tag">Publishing</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="certifications">
+          <h2>Certification &amp; Professional Competencies</h2>
+
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-year">2026</div>
+              <div class="cert-icon" aria-hidden="true"></div>
+
+              <div class="cert-content">
+                <h3>
+                  Aptis ESOL B2
+                  <span>— English Proficiency Certificate</span>
+                </h3>
+
+                <div class="cert-meta">
+                  British Council, Vietnam
+                </div>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-year">Coding</div>
+              <div class="cert-icon" aria-hidden="true"></div>
+
+              <div class="cert-content">
+                <h3>
+                  Python, C#, HTML
+                  <span>&amp; CSS</span>
+                </h3>
+
+                <div class="cert-meta">
+                  Programming and web development technologies
+                </div>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-year">Database</div>
+              <div class="cert-icon" aria-hidden="true"></div>
+
+              <div class="cert-content">
+                <h3>SQL Server and MySQL</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="references">
+          <h2>Reference &amp; Contact</h2>
+
+          <div class="ref-list simple-ref">
+            <div class="ref-person">
+              <h3>Dr. Quang-Thinh Bui</h3>
+              <p>Faculty of Education and Basic Sciences</p>
+              <p>Tien Giang University</p>
+              <p>
+                119 Ap Bac, Ward 5, My Tho City,
+                Dong Thap Province, Vietnam
+              </p>
+
+              <p>
+                <a href="mailto:buiquanghthinh@tgu.edu.vn">
+                  buiquanghthinh@tgu.edu.vn
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Quan-Minh Le — Resume Website.
+    </footer>
+  </main>
+
+  <script src="./main.js"></script>
+  <script src="./hoaanhdao.js"></script>
+</body>
+</html>
